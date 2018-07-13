@@ -1,0 +1,37 @@
+##
+## Global settings, can be overridden for individual widget definitions
+##
+## http://appdaemon.readthedocs.io/en/stable/DASHBOARD_CREATION.html#main-settings
+##
+
+title: Home Panel title
+title2: The title2
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+scalable: true
+
+# global_parameters are a list of parameters that will be applied to every widget
+global_parameters:
+    use_hass_icon: 1
+    # precision is the number of decimal places
+    precision: 1
+    namespace: default
+    
+    # For devices: you can add an entry for any widget type, then under that, list global parameters that will be applied to just that widget type
+    # devices:
+      # media_player:
+        # step: 5
+
+## Widget Definitions in panel files, with Dashboard
+## Layout below
+##
+## http://appdaemon.readthedocs.io/en/stable/DASHBOARD_CREATION.html#advanced-dashboard-definition
+##
+
+layout:
+    - include: header
+    - include: main_panel
+    - header_label(2x2),header_clock(2x2)
+    

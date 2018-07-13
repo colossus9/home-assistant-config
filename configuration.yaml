@@ -1,0 +1,240 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 489
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: US/Central
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Customizations (enable when file is not empty)
+# customize: !include customize.yaml
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+
+# Embedding Add-ons to the Home Assistant Front-end
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://hassio.local:3218
+  terminal:
+    title: Terminal
+    icon: mdi:console
+    url: http://hassio.local:7681
+
+# Sensors
+sensor:
+
+# Time and Date
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
+      
+# Moon Phase
+  - platform: moon
+
+# Speedtest
+  - platform: speedtest
+    server_id: 16089
+    minute:
+      - 0
+      - 30
+    monitored_conditions:
+      - download
+      - ping
+      - upload
+
+# Google Travel Time
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret curbside_coffee
+    name: Curbside Coffee
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret heb_taylor
+    name: HEB Taylor
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret fred_b
+    name: Grandpa Fred
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+        
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret g_ma
+    name: G-Ma
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret lindsey_a
+    name: Sophie
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret red_robin
+    name: Red Robin
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret austin_conv_ctr
+    name: Austin Convention Center
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret austin_bergstrom
+    name: Austin Bergstrom Airport
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret barnes_noble
+    name: Barnes and Noble
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+        
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    origin: !secret home
+    destination: !secret immanuel_giddings
+    name: Immanuel Giddings
+    options:
+        mode: driving
+        departure_time: now
+        units: imperial
+
+# System Monitor
+
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: disk_use_percent
+        arg: /
+      - type: memory_use_percent
+      - type: memory_free
+      - type: swap_use_percent
+      - type: load_1m
+      - type: network_in
+        arg: wlan0
+      - type: network_out
+        arg: wlan0
+      - type: last_boot
+      
+# Liftmaster MyQ
+cover:
+  - platform: myq
+    username: !secret myq_user
+    password: !secret myq_pass
+    type: liftmaster
+    
+# Google Calendar
+google:
+  client_id: !secret google_cal_id
+  client_secret: !secret google_cal_sec
+  track_new_calendar: false

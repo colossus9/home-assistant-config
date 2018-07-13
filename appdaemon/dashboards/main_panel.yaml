@@ -1,0 +1,7 @@
+speedtest:
+    widget_type: sensor
+    title: Speedtest
+    entity: sensor.speedtest_download
+
+# We decided to define the layout at the top level for now instead of here
+#layout:

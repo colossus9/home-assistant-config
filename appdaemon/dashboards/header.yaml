@@ -1,0 +1,6 @@
+header_label:
+    widget_type: label
+    text: Welcome Home
+
+header_clock:
+    widget_type: clock
