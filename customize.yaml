@@ -1,4 +1,6 @@
 media_player.samsung_led65_un65f6300:
-  friendly_name: TV - Samsung LED65 (Living Room)
+  friendly_name: TV Samsung LED65 (Living Room)
 media_player.master_bath:
   friendly_name: Sonos (Master Bath)
+media_player.isaiahs_room:
+  friendly_name: Sonos (Isaiah's Room)
