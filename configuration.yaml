@@ -71,6 +71,7 @@ script: !include scripts.yaml
 
 
 # Embedding Add-ons to the Home Assistant Front-end
+# https://www.home-assistant.io/components/panel_iframe/
 panel_iframe:
   configurator:
     title: Configurator
@@ -80,6 +81,10 @@ panel_iframe:
     title: Terminal
     icon: mdi:console
     url: http://hassio.local:7681
+  hadashboard: 
+    title: HADashboard
+    icon: mdi:view-dashboard
+    url: http://hassio.local:5050
 
 # Sensors
 sensor:
@@ -221,9 +226,9 @@ sensor:
       - type: swap_use_percent
       - type: load_1m
       - type: network_in
-        arg: wlan0
+        arg: wlan1
       - type: network_out
-        arg: wlan0
+        arg: wlan1
       - type: last_boot
       
 # Liftmaster MyQ
@@ -238,3 +243,10 @@ google:
   client_id: !secret google_cal_id
   client_secret: !secret google_cal_sec
   track_new_calendar: false
+
+# Shell Command. Exposes service shell_command.git_*
+shell_command:
+  git_status: cd /config/ && git status
+  git_add: cd /config/ && git add -all
+  git_add_commit: cd /config/ && git add --all && git commit -m "Committing from HA Shell"
+  git_push: cd /config/ && git push origin master

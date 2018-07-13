@@ -8,7 +8,7 @@ appdaemon:
   plugins:
     HASS:
       type: hass
-      ha_url: !secret appdaemon_ha_url
+      ha_url: !secret ha_url
       ha_key: !secret appdaemon_ha_key
 hadashboard:
   dash_url: http://127.0.0.1:5050

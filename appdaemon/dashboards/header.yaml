@@ -4,3 +4,10 @@ header_label:
 
 header_clock:
     widget_type: clock
+    
+header_weather:
+    widget_type: weather
+    units: "&deg;F"
+    
+layout:
+    - header_label(2x1),header_clock(2x1),header_weather(2x2)

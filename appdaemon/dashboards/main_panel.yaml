@@ -1,7 +1,17 @@
-speedtest:
+speedtest_download:
     widget_type: sensor
-    title: Speedtest
+    title: Speedtest Download
     entity: sensor.speedtest_download
 
-# We decided to define the layout at the top level for now instead of here
-#layout:
+speedtest_ping:
+    widget_type: sensor
+    title: Speedtest Ping
+    entity: sensor.speedtest_ping
+    
+speedtest_upload:
+    widget_type: sensor
+    title: Speedtest Upload
+    entity: sensor.speedtest_upload
+
+layout:
+    - speedtest_download(2x2),speedtest_ping(2x2),speedtest_upload(2x2)
